@@ -3,8 +3,6 @@ const postAppointment = require("../controllers/postAppointment")
 const { v4: uuidv4 } = require('uuid');
 const calcPrice = require('../controllers/loadDb/calcPrice');
 const moment = require('moment');   
-const moment = require('moment');
-
 
 const {
     ACCESS_TOKEN
@@ -25,9 +23,12 @@ const pagosMP = async (req, res) => {
     const { date, time, idPatient, idDoctor } = req.body
 
     // console.log(req.body)
-    const dateMoment= await moment(new Date(date)).format( 'YYYY-MM-DD')
+    
     const price = await calcPrice(idPatient, idDoctor);
 
+    const dateMoment= await moment(new Date(date)).format( 'YYYY-MM-DD')
+
+    
     const newAppointment = await postAppointment(dateMoment, time, idPatient, idDoctor, price)
     const { dataValues } = newAppointment
 
