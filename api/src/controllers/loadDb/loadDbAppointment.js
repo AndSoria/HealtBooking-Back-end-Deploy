@@ -15,7 +15,7 @@ const loadDbAppointment = async () => {
 
       const price = await calcPrice(idPatient, idDoctor);
 
-      await postAppointment( dateMoment, time, idPatient, idDoctor, price);
+      await postAppointment( dateMoment, time, idPatient, idDoctor, price, paymentDay, status);
 
     }
   } catch (error) {

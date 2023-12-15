@@ -23,12 +23,9 @@ const pagosMP = async (req, res) => {
     const { date, time, idPatient, idDoctor } = req.body
 
     // console.log(req.body)
-    
+    const dateMoment = await moment(new Date(date)).format('YYYY-MM-DD')
     const price = await calcPrice(idPatient, idDoctor);
 
-    const dateMoment= await moment(new Date(date)).format( 'YYYY-MM-DD')
-
-    
     const newAppointment = await postAppointment(dateMoment, time, idPatient, idDoctor, price)
     const { dataValues } = newAppointment
 
@@ -57,7 +54,7 @@ const pagosMP = async (req, res) => {
             res.status(200).json(response.init_point);
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
             res.status(500).json({ error: 'Error al crear la preferencia de pago.', error });
         });
 };
