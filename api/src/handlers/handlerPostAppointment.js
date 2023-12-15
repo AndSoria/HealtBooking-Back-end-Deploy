@@ -1,5 +1,5 @@
 const postAppointment = require("../controllers/postAppointment")
-const sendEmailConfimDate= require('../controllers/notifications/sendEmailDate')
+const sendEmailDate= require('../controllers/notifications/sendEmailDate')
 const {Doctor, Patient, Specialty}= require('../db.js')
 
 
@@ -16,14 +16,14 @@ const handlerPostAppointment=async(req, res)=>{
 
         const dataAppointment={
             id: doctor.dataValues.id,
-            email:patient.email,
+            email:patient.dataValues.email,
             doctor: doctor.dataValues.name,
             date: date,
             time: time,
             specialty: specialty.dataValues.name,
           }
          
-        await sendEmailConfimDate(dataAppointment);
+        await sendEmailDate(dataAppointment);
         
         res.status(200).send({ message: "Reserved appointment", newAppointment })
     } catch (error) {
