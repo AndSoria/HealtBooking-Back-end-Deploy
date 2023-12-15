@@ -3,8 +3,6 @@ const postAppointment = require("../controllers/postAppointment")
 const { v4: uuidv4 } = require('uuid');
 const calcPrice = require('../controllers/loadDb/calcPrice');
 const moment = require('moment');   
-const moment = require('moment');
-
 
 const {
     ACCESS_TOKEN
